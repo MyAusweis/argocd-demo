@@ -3,14 +3,14 @@ kind: Deployment
 metadata:
   labels:
     app: python-helloworld
-   name: python-helloworld
-  namespace: default
+  name: python-helloworld
+  namespace: default 
 spec:
   replicas: 3
   selector:
     matchLabels:
       app: python-helloworld
-    strategy:
+  strategy:
     rollingUpdate:
       maxSurge: 25%
       maxUnavailable: 25%
@@ -19,10 +19,12 @@ spec:
     metadata:
       labels:
         app: python-helloworld
-        
     spec:
       containers:
-      - image: myausweis/python-helloworld:v1.0.0
+      - image: pixelpotato/python-helloworld:v1.0.0 
         imagePullPolicy: IfNotPresent
         name: python-helloworld
-        
+        resources:
+          requests:
+            cpu: 50m
+            memory: 256Mi
